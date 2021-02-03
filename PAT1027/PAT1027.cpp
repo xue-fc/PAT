@@ -1,3 +1,5 @@
+//没有从char到string的构造函数，得用char数组作为中介
+
 #include<iostream>
 #include<cstring>
 #include<string>
