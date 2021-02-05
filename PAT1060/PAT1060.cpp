@@ -17,6 +17,9 @@ using namespace std;
 const int MAX = 1000;
 
 int main(){
+    string a,b;
+    int N;
+    cin>>N>>a>>b;
     
     return 0;
 }
