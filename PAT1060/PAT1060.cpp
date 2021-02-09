@@ -1,6 +1,7 @@
 /*
     这题就分类讨论，分情况讨论它的次数和有效数字
     有两个点过不了
+    百度了正确答案，不知道哪里出了问题，我测试出来的都一样
 */
 #include<iostream>
 #include<cstring>
@@ -35,7 +36,13 @@ int main(){
 
 string helper(string a,unsigned N){
     if(a.compare("0")==0)
-        return "0";
+    {
+        string t="0.";
+        for(int i=0;i<N;i++){
+            t += "0";
+        }
+        return t+"*10^0";
+    }
     string af,at,a_eff;
     string::iterator dot;
     int ae;
@@ -78,6 +85,10 @@ string helper(string a,unsigned N){
                 a_eff = af + at;
             }
         }
+    }
+    int ab = a_eff.size();
+    for(int i=0;i<N-ab;i++){
+        a_eff = a_eff + "0";
     }
     string res = "0."+a_eff+"*10^"+to_string(ae);
     return res;
