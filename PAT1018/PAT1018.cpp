@@ -1,5 +1,5 @@
 /*
-
+    略有些复杂，之后看
 */
 #include<iostream>
 #include<cstring>
@@ -17,6 +17,7 @@ int cmax,N,sp,M;
 int bikes[510]={0};
 int graph[510][510] = {inf};
 int dis[510] = {inf};
+bool visit[510] = {false};
 
 int main(){
     cin>>cmax>>N>>sp>>M;
@@ -29,10 +30,16 @@ int main(){
         graph[a][b] = graph[b][a] = t;
     }
     dis[0] = 0;
+    int min=inf;
+    int u = -1;
     for(int i=1;i<N;i++){
         dis[i] = graph[0][i];
+        if(graph[0][i] < min){
+            min = graph[0][i];
+            u = i;
+        }
     }
-    
+    visit[u] = true;
 
     return 0;
 }
