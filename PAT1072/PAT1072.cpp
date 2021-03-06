@@ -1,6 +1,7 @@
 /*
     这里的G1别用string来处理，那样只能用map来存，很难搞而且会蛮难
     所以将string转成int就可以了
+    看清条件，还不知道为啥有一个点过不去
 */
 #include<iostream>
 #include<cstring>
@@ -30,13 +31,13 @@ int main(){
         int a,b;
         scanf("%s",str);
         if(str[0]=='G'){
-            a = N + str[1]-'0';
+            a = N + atoi(str+1);
         }
         else
             a = atoi(str);
         scanf("%s",str);
         if(str[0]=='G'){
-            b = N + str[1]-'0';
+            b = N + atoi(str+1);
         }
         else
             b = atoi(str);
@@ -66,14 +67,14 @@ int main(){
                 }
             }
         }
-        int l_ave=0,l_min=0;
+        int l_ave=0,l_min=inf;
         bool flag=true;
         for(int m=1;m<=N;m++){
             if(dis[m]>Ds){
                 flag=false;
                 break;
             }
-            l_min = dis[m]>l_min ? dis[m] : l_min;
+            l_min = dis[m]<l_min ? dis[m] : l_min;
             l_ave += dis[m];
         }
         if(flag && l_min>g_min)
@@ -86,17 +87,16 @@ int main(){
             if(flag && l_min==g_min && l_ave<ave){
                 res = i+N;
                 ave = l_ave;
-                g_min = l_min;
             }
         }
     }
     if(res==-1){
-        cout<<"No solution\n";
+        cout<<"No Solution\n";
     }
     else
     {
         cout<<"G"<<res-N<<endl;
-        printf("%.1f %.1f",g_min/1.0,(ave/1.0)/N);
+        printf("%.1f %.1f\n",g_min/1.0,(ave/1.0)/N+0.05);
     }    
     return 0;
 }
