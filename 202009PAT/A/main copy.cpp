@@ -2,7 +2,6 @@
 #include<vector>
 
 using namespace std;
-vector<int> v;
 int main(){
     int n;
     cin>>n;
@@ -15,6 +14,7 @@ int main(){
     int tmp;
     int cnt=0;
     int last_min=0;
+    vector<int> v;
     for(int i=0;i<n;i++){
         cin>>tmp;
         if(tmp <= last){
@@ -34,8 +34,11 @@ int main(){
                 }
             }
             if(last_weight<=last_min){
-                sum += v.size()*(last_min-last_weight+100);
-                last_min = 300 + last_min - last_weight;
+                sum += last_min-last_weight+100;
+                if(v.size()==1)
+                    last_min = last_min+100;
+                else
+                    last_min = 200;
             }
             else{
                 last_min = 200;
@@ -45,7 +48,6 @@ int main(){
             last = tmp;
         }
     }
-    // last_min=0;
     int local=v[0];
     int last_weight=200;
     for(auto it=v.begin();it!=v.end();it++){
@@ -58,13 +60,8 @@ int main(){
         }
     }
     if(last_weight<=last_min){
-        sum += v.size()*(last_min-last_weight+100);
-        last_min = 300 + last_min - last_min;
+        sum += last_min-last_weight+100;
     }
-    else{
-        last_min = 200;
-    }
-    v.clear();
     cout<<sum<<endl;
     return 0;
 }
