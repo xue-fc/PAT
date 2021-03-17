@@ -1,9 +1,5 @@
 /*
-    著名的北京地铁
-    最多会有10000个点，用邻接矩阵会内存超限，晴神是复用了int类来节省空间
-    要注意是边属于几号线而不是点属于，记得区分哪些性质是边的哪些性质是点的
-    因为存不下1000个，所以使用mao当字典，来把序号毫无关系的站映射成连续的，这样起码可以过前几个点
-    dfs时思路也挺简单，改过的值记得还原，然后到终点时使用下即可
+    排序而已，比较简单，注意调整两个vector的长度即可
 */
 #include<iostream>
 #include<cstring>
@@ -32,6 +28,7 @@ int edges[4000][4000];
 bool visited[4000];
 vector<int> path;
 vector<int> local_path;
+unordered_map<int,int> dic;//站到线的映射
 int minTransfer=9999;
 int transfer=0;
 int lastline=0;
